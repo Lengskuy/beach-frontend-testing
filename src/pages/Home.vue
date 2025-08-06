@@ -201,14 +201,12 @@ const safetyFlags = [
 
 const fetchBeaches = async () => {
   try {
-    const response = await api.get('/beaches/mock');
-    console.log('Response:', response.data);
+    const response = await api.get('/beaches/mock'); // get all beaches
     beaches.value = response.data;
   } catch (error) {
     console.error('Failed to fetch beaches:', error);
   }
 };
-
 
 
 onMounted(() => {
