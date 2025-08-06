@@ -78,6 +78,7 @@ export default defineConfig(({ mode }) => {
     server: {
       host: '0.0.0.0',
       port: parseInt(env.PORT) || 3000,
+      allowedHosts: ['beach-frontend-testing.onrender.com'],
     },
     css: {
       preprocessorOptions: {
