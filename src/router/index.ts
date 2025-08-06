@@ -9,17 +9,22 @@ import { createRouter, createWebHistory } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
 
+// ✅ Add type imports
+import type { RouteLocationNormalized } from 'vue-router'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: setupLayouts([
     ...routes,
-    { path: '/', redirect: '/home' }, // ← Add this line
+    { path: '/', redirect: '/home' },
   ]),
 })
 
-// Workaround for https://github.com/vitejs/vite/issues/11804
-router.onError((err, to) => {
-  if (err?.message?.includes?.('Failed to fetch dynamically imported module')) {
+// ✅ Explicitly type the error and route location
+router.onError((err: unknown, to: RouteLocationNormalized) => {
+  // Cast error if needed
+  const error = err as Error
+  if (error?.message?.includes?.('Failed to fetch dynamically imported module')) {
     if (localStorage.getItem('vuetify:dynamic-reload')) {
       console.error('Dynamic import error, reloading page did not fix it', err)
     } else {

@@ -16,11 +16,15 @@
       "@/*": ["./src/*"]
     },
 
-    // 👇 Add these to fix implicit 'any' on .vue files
+    // ✅ Change this:
+    "moduleResolution": "bundler",
+
+    // ✅ Add this:
+    "types": ["unplugin-vue-router/client"],
+
     "allowJs": true,
     "checkJs": false,
     "isolatedModules": true,
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "module": "esnext",
